@@ -1,6 +1,8 @@
 package com.mht.redisdemo.dto;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String name;
     private String model;
     private String description;
@@ -34,5 +36,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", model='" + model + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

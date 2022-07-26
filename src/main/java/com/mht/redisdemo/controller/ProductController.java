@@ -1,6 +1,7 @@
 package com.mht.redisdemo.controller;
 
 import com.mht.redisdemo.dto.Product;
+import com.mht.redisdemo.service.CacheEvictService;
 import com.mht.redisdemo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private CacheEvictService cacheEvictService;
+
     @GetMapping("/product")
     public List<Product> getProduct(){
         return productService.getAllProduct();
@@ -23,7 +27,7 @@ public class ProductController {
 
     @PostMapping("/product")
     public String addProduct(@RequestBody Product product){
-        productService.addProduct(product);
+        cacheEvictService.addProduct(product);
         return "success";
     }
 }
